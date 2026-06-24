@@ -1,0 +1,449 @@
+:root {
+  --deep-black: #0F0F10;
+  --charcoal: #1C1C1E;
+  --dark-gray: #2D2D30;
+  --premium-gold: #C8A96E;
+  --gold-hover: #b08d55;
+  --white: #FFFFFF;
+  --gray-text: #9CA3AF;
+  --error: #ef4444;
+
+  --font-title: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--deep-black);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* --- Lado Esquerdo (Marca) --- */
+.brand-section {
+  flex: 1;
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 16, 0.7),
+    rgba(15, 15, 16, 0.95)
+  );
+}
+
+.brand-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+  max-width: 540px;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: center;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: clamp(1.25rem, 3vw, 3rem);
+}
+
+.logo-icon {
+  width: 52px;
+  height: 52px;
+  background-color: var(--premium-gold);
+  color: var(--deep-black);
+  font-family: var(--font-title);
+  font-size: 2.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(200, 169, 110, 0.15);
+}
+
+.brand-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.1rem, 4vw, 2.75rem);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.brand-slogan {
+  font-size: 0.9rem;
+  color: var(--premium-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.brand-text h2 {
+  font-family: var(--font-title);
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.brand-text p {
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  color: var(--gray-text);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* --- Lado Direito (Formulário) --- */
+.form-section {
+  width: 470px;
+  background-color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border-left: 1px solid var(--dark-gray);
+}
+
+.form-card {
+  width: 100%;
+  max-width: 410px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: clamp(1.25rem, 2.8vw, 2rem);
+  border-radius: 18px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.form-header {
+  margin-bottom: 1.25rem;
+}
+
+.form-header h2 {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 0.35rem;
+}
+
+.form-header p {
+  color: var(--gray-text);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+form {
+  width: 100%;
+}
+
+.input-group {
+  margin-top: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--gray-text);
+  margin-bottom: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(200, 169, 110, 0.95);
+  pointer-events: none;
+}
+
+input {
+  width: 100%;
+  padding: 0.95rem 3rem 0.95rem 2.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--white);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+input::placeholder {
+  color: rgba(156, 163, 175, 0.65);
+}
+
+input:focus {
+  border-color: rgba(200, 169, 110, 0.7);
+  box-shadow: 0 0 0 4px rgba(200, 169, 110, 0.12);
+}
+
+input.input-error {
+  border-color: rgba(239, 68, 68, 0.9);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 120ms ease, border-color 180ms ease,
+    background 180ms ease;
+}
+
+.toggle-pass:hover {
+  border-color: rgba(200, 169, 110, 0.6);
+  background: rgba(200, 169, 110, 0.06);
+}
+
+.toggle-pass:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+.error-msg {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--error);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  min-height: 1.1em;
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--gray-text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.forgot-link {
+  color: rgba(200, 169, 110, 0.95);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.forgot-link:hover {
+  color: var(--gold-hover);
+  text-decoration: underline;
+}
+
+.btn-primary {
+  margin-top: 1.25rem;
+  width: 100%;
+  height: 48px;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--deep-black);
+  background: linear-gradient(135deg, var(--premium-gold), var(--gold-hover));
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 120ms ease, filter 180ms ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.1) brightness(0.95);
+}
+
+.btn-text {
+  display: inline-block;
+}
+
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(15, 15, 16, 0.25);
+  border-top-color: rgba(15, 15, 16, 0.9);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-footer {
+  margin-top: 1.1rem;
+  text-align: center;
+  color: var(--gray-text);
+  font-size: 0.95rem;
+}
+
+.form-footer a {
+  color: rgba(200, 169, 110, 0.95);
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  color: var(--gold-hover);
+  text-decoration: underline;
+}
+
+/* Overlay de carregamento */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loading-content {
+  background: rgba(20, 20, 22, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  width: min(420px, calc(100vw - 2rem));
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 4px solid rgba(200, 169, 110, 0.18);
+  border-top-color: rgba(200, 169, 110, 0.95);
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 0.9rem;
+}
+
+#loadingText {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+
+  .login-container {
+    flex-direction: column;
+  }
+
+  .brand-section {
+    min-height: 42vh;
+  }
+
+  .form-section {
+    width: 100%;
+    border-left: 0;
+    border-top: 1px solid var(--dark-gray);
+  }
+
+  .form-card {
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 420px) {
+  .form-header h2 {
+    font-size: 2rem;
+  }
+
+  input {
+    padding: 0.95rem 2.75rem 0.95rem 2.65rem;
+  }
+
+  .toggle-pass {
+    right: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

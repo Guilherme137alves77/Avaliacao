@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbearia Estilo & Classe | Avaliação</title>
+<link rel="stylesheet" href="style.css">
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<!-- Ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div id="client-view">
+<div class="header-brand">
+<i class="fas fa-cut logo-icon"></i>
+<h1 class="brand-name">Estilo & Classe</h1>
+<p class="brand-slogan">Desde 2020 • Barbearia Premium</p>
+</div>
+
+<div class="evaluation-card">
+<div class="card-title">
+<h2>AVALIE NOSSO ATENDIMENTO</h2>
+<p>Sua opinião nos ajuda a manter a excelência.</p>
+</div>
+
+<!-- Estrelas -->
+<div class="star-container">
+<input type="radio" name="star" id="star5" class="star-input" value="5">
+<label for="star5" class="star-label"><i class="fas fa-star"></i></label>
+
+<input type="radio" name="star" id="star4" class="star-input" value="4">
+<label for="star4" class="star-label"><i class="fas fa-star"></i></label>
+
+<input type="radio" name="star" id="star3" class="star-input" value="3">
+<label for="star3" class="star-label"><i class="fas fa-star"></i></label>
+
+<input type="radio" name="star" id="star2" class="star-input" value="2">
+<label for="star2" class="star-label"><i class="fas fa-star"></i></label>
+
+<input type="radio" name="star" id="star1" class="star-input" value="1">
+<label for="star1" class="star-label"><i class="fas fa-star"></i></label>
+</div>
+
+<div style="text-align: center; margin-bottom: 20px;">
+<span id="rating-text" class="text-gold" style="font-family: var(--font-title); letter-spacing: 2px;">SELECIONE UMA NOTA</span>
+</div>
+
+<!-- Categorias -->
+<div class="category-grid" id="categories">
+<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-cut"></i><span>Corte</span></div>
+<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-user-tie"></i><span>Barba</span></div>
+<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-couch"></i><span>Ambiente</span></div>
+<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-clock"></i><span>Pontualidade</span></div>
+</div>
+
+<textarea id="comment" rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
+
+<div style="text-align: center;">
+<button id="submitBtn" class="btn-primary">Enviar Avaliação</button>
+</div>
+</div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay" class="hidden">
+<div class="loader-ring"></div>
+<div id="loading-msg" class="loading-text">Enviando avaliação...</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
