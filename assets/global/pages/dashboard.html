@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin | Barbearia Estilo & Classe</title>
-<link rel="stylesheet" href="/assets/global/css/style.css">
+<link rel="stylesheet" href="assets/global/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
@@ -19,10 +19,10 @@
 <div class="sidebar-logo"><i class="fas fa-cut"></i> E&C Admin</div>
 </div>
  <ul class="nav-menu">
-        <li class="nav-item"><a href="/assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-        <li class="nav-item"><a href="/assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
-        <li class="nav-item active"><a href="/assets/global/pages/client-profile.html"></a><i class="fas fa-users"></i> Clientes</li>
-        <li class="nav-item"><a href="/assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
+        <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+        <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
+        <li class="nav-item active"><a href="assets/global/pages/client-profile.html"></a><i class="fas fa-users"></i> Clientes</li>
+        <li class="nav-item"><a href="assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
       </ul>
 </nav>
 
@@ -103,10 +103,10 @@ style="fill:none;stroke:var(--gold);stroke-width:3" />
 </main>
 </div>
 
-<script src="/assets/js/auth.js"></script>
-<script src="/assets/js/dashboard.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/dashboard.js"></script>
 <script>
-window.AppAuth && window.AppAuth.requireAuth('/assets/global/pages/login.html');
+window.AppAuth && window.AppAuth.requireAuth('assets/global/pages/login.html');
   const btnLogout = document.getElementById('btn-logout');
   if (btnLogout && window.AppAuth) {
     btnLogout.addEventListener('click', () => window.AppAuth.logout());
