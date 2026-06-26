@@ -94,7 +94,7 @@ if (msg) msg.innerText = "Sucesso!";
 setTimeout(() => {
 if (overlay) overlay.classList.add('hidden');
 // Redirecionamento solicitado
-window.location.href = '/assets/global/pages/dashboard.html';
+window.location.href = 'assets/global/pages/dashboard.html';
 }, 800);
 }
 }, 800);
