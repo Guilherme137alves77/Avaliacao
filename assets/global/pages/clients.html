@@ -12,16 +12,32 @@
 </head>
 <body>
 
-  <!-- Sidebar (Admin) -->
   <div id="client-admin-view">
-    <nav class="sidebar">
+
+    <!-- Mobile top bar -->
+    <div class="mobile-topbar">
+      <div class="mobile-topbar-left">
+        <button class="mobile-menu-toggle" aria-label="Abrir menu">
+          <i class="fas fa-bars" style="font-size:1.1rem;"></i>
+        </button>
+        <div>
+          <div class="mobile-title">Clientes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay hidden"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="mobile-sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo"><i class="fas fa-users"></i> E&C Admin</div>
       </div>
       <ul class="nav-menu">
         <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
         <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
-        <li class="nav-item active"><a href="assets/global/pages/client-profile.html"></a><i class="fas fa-users"></i> Clientes</li>
+        <li class="nav-item active"><a href="assets/global/pages/client-profile.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-users"></i> Clientes</a></li>
         <li class="nav-item"><a href="assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
       </ul>
     </nav>
@@ -95,13 +111,45 @@
   <script src="assets/js/clients.js"></script>
   <script>
     window.AppAuth && window.AppAuth.requireAuth('login.html');
+
     const btnLogout = document.getElementById('btn-logout');
     if (btnLogout && window.AppAuth) {
       btnLogout.addEventListener('click', () => window.AppAuth.logout());
     }
+
+    // Open/close off-canvas (mobile)
+    (function () {
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const sidebar = document.getElementById('mobile-sidebar');
+      const toggleBtn = document.querySelector('.mobile-menu-toggle');
+
+      function openMenu() {
+        if (sidebar) sidebar.classList.add('is-open');
+        if (overlay) overlay.classList.remove('hidden');
+      }
+
+      function closeMenu() {
+        if (sidebar) sidebar.classList.remove('is-open');
+        if (overlay) overlay.classList.add('hidden');
+      }
+
+      if (toggleBtn && sidebar) {
+        toggleBtn.setAttribute('aria-controls', 'mobile-sidebar');
+        toggleBtn.addEventListener('click', openMenu);
+      }
+
+      if (overlay) overlay.addEventListener('click', closeMenu);
+
+      if (sidebar) {
+        const links = sidebar.querySelectorAll('a');
+        links.forEach(a => a.addEventListener('click', closeMenu));
+      }
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) closeMenu();
+      });
+    })();
   </script>
 </body>
 </html>
-
-
 

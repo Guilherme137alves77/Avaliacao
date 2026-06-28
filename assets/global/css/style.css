@@ -167,6 +167,14 @@ animation: pulse 1.5s infinite;
 /* --- ADMIN PAGE --- */
 #admin-view, #client-admin-view { display: flex; min-height: 100vh; }
 
+/* Garante que o conteúdo principal e sidebar não sumam por regras gerais */
+.main-content { position: relative; z-index: 1; }
+
+/* Evita que off-canvas empurre/“some” layout no desktop */
+#admin-view, #client-admin-view { width: 100%; }
+
+
+
 .sidebar {
 width: 250px;
 background: var(--black-charcoal);
@@ -174,7 +182,10 @@ border-right: 1px solid var(--gray-dark);
 padding: 30px 0;
 display: flex;
 flex-direction: column;
+position: relative;
+z-index: 2;
 }
+
 .sidebar-header { padding: 0 30px 30px; border-bottom: 1px solid var(--gray-dark); }
 .sidebar-logo { font-family: var(--font-title); font-size: 1.2rem; color: var(--gold); }
 
@@ -211,7 +222,7 @@ position: relative;
 .progress-bg { height: 8px; background: var(--gray-dark); border-radius: 4px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--gold); width: 0; transition: width 1s ease; }
 
-.table-container { background: var(--black-charcoal); border-radius: 8px; border: 1px solid var(--gray-dark); overflow: hidden; }
+.table-container { background: var(--black-charcoal); border-radius: 8px; border: 1px solid var(--gray-dark); overflow-x: hidden; overflow-y: hidden; }
 table { width: 100%; border-collapse: collapse; }
 th { background: rgba(200, 169, 110, 0.1); color: var(--gold); padding: 15px; text-align: left; font-family: var(--font-title); font-size: 0.9rem; }
 td { padding: 15px; border-bottom: 1px solid var(--gray-dark); font-size: 0.9rem; color: var(--text-gray); }
@@ -224,13 +235,149 @@ tr:last-child td { border-bottom: none; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-@media (max-width: 768px) {
-#admin-view, #client-admin-view { flex-direction: column; }
-.sidebar { width: 100%; flex-direction: row; align-items: center; padding: 15px; overflow-x: auto; }
-.sidebar-header { border: none; padding: 0 15px 0 0; }
+/* --- Responsividade --- */
 
-.nav-menu { display: flex; margin: 0; }
-.nav-item { padding: 10px; font-size: 0.8rem; }
-.charts-container { grid-template-columns: 1fr; }
-.category-grid { grid-template-columns: 1fr 1fr; }
+/* Largura máxima (evita ficar “gigante” em telas muito largas) */
+@media (min-width: 1200px) {
+  .main-content { padding: 34px; }
+  .sidebar { padding: 30px 0; }
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  #admin-view, #client-admin-view { flex-direction: column; }
+
+  .mobile-topbar { display: flex; }
+
+
+  .main-content {
+    padding: 22px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-topbar { display: flex; }
+}
+
+/* Celular */
+@media (max-width: 480px) {
+  .main-content { padding: 16px; }
+
+  .admin-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .metric-value { font-size: 2.1rem; }
+
+  /* Botões do header */
+  .admin-header .btn-primary {
+    font-size: 0.78rem;
+    padding: 10px 14px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Tabela: permite scroll horizontal e reduz fonte */
+  .table-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th { font-size: 0.8rem; padding: 12px 10px; }
+  td { font-size: 0.86rem; padding: 12px 10px; }
+
+  .charts-container { gap: 14px; }
+  .metrics-grid { gap: 14px; }
+}
+
+/* Navegação mobile (off-canvas) */
+.mobile-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--black-deep);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gray-dark);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobile-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-title {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.mobile-menu-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-dark);
+  background: rgba(200, 169, 110, 0.08);
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 60;
+}
+
+/* Sidebar sempre visível (mobile/tablet/desktop) */
+.sidebar {
+  display: flex;
+}
+
+/* Sidebar sempre visível em todas as larguras (sem off-canvas) */
+.mobile-menu-overlay { display: none !important; }
+
+@media (max-width: 768px) {
+  /* Mantém layout com sidebar + conteúdo (row) */
+  #admin-view, #client-admin-view { flex-direction: row; }
+
+  /* Topbar mobile desnecessária porque não há off-canvas */
+  .mobile-topbar { display: none !important; }
+
+  /* Garante tamanho/visibilidade da sidebar no mobile */
+  .sidebar {
+    position: relative;
+    left: auto;
+    top: auto;
+    height: auto;
+    width: 250px;
+    transition: none;
+    display: flex;
+    flex: 0 0 250px;
+  }
+
+  .main-content { flex: 1; min-width: 0; }
+}
+
+/* Desktop */
+
+
+
+
+
+

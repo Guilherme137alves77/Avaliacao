@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin | Barbearia Estilo & Classe</title>
-<link rel="stylesheet" href="assets/global/css/style.css">
+<title>Dashboard | Barbearia Estilo & Classe</title>
+<link rel="stylesheet" href="/assets/global/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
@@ -13,17 +13,33 @@
 <body>
 
 <div id="admin-view">
-<!-- Sidebar -->
-<nav class="sidebar">
-<div class="sidebar-header">
-<div class="sidebar-logo"><i class="fas fa-cut"></i> E&C Admin</div>
+
+<!-- Mobile top bar (apenas <= 768px) -->
+<div class="mobile-topbar">
+  <div class="mobile-topbar-left">
+    <button class="mobile-menu-toggle" aria-label="Abrir menu">
+      <i class="fas fa-bars" style="font-size:1.1rem;"></i>
+    </button>
+    <div>
+      <div class="mobile-title">Dashboard</div>
+    </div>
+  </div>
 </div>
- <ul class="nav-menu">
-        <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-        <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
-        <li class="nav-item active"><a href="assets/global/pages/client-profile.html"></a><i class="fas fa-users"></i> Clientes</li>
-        <li class="nav-item"><a href="assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
-      </ul>
+
+<!-- Mobile overlay -->
+<div id="mobile-menu-overlay" class="mobile-menu-overlay hidden"></div>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="mobile-sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo"><i class="fas fa-cut"></i> E&C Admin</div>
+  </div>
+  <ul class="nav-menu">
+    <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+    <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
+    <li class="nav-item"><a href="assets/global/pages/clients.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-users"></i> Clientes</a></li>
+    <li class="nav-item"><a href="assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
+  </ul>
 </nav>
 
 <!-- Main Content -->
@@ -60,27 +76,14 @@
 </div>
 </div>
 
-<!-- Gráficos -->
-<div class="charts-container">
-<div class="chart-card">
-<h3 class="chart-title">Distribuição de Notas</h3>
-<div id="chart-bars">
-<!-- JS preenche -->
-</div>
-</div>
-<div class="chart-card">
-<h3 class="chart-title">Evolução Mensal</h3>
-<div style="height: 200px; display: flex; align-items: flex-end; justify-content: space-between; padding-top: 20px; position: relative;">
-<svg width="100%" height="100%" style="position: absolute; top:0; left:0; z-index: 1;">
-<polyline points="0,150 60,140 120,100 180,110 240,80 300,50 360,20"
-style="fill:none;stroke:var(--gold);stroke-width:3" />
-<circle cx="360" cy="20" r="5" fill="var(--gold)" />
-</svg>
-<!-- Eixos visuais simples -->
-<div style="width: 100%; height: 1px; background: var(--gray-dark); position: absolute; bottom: 20px;"></div>
-</div>
-<div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #666;">Crescimento de Jan a Jun</div>
-</div>
+<!-- Gráficos (apenas barra) -->
+<div class="charts-container" style="grid-template-columns: 1fr;">
+  <div class="chart-card">
+    <h3 class="chart-title">Distribuição de Notas</h3>
+    <div id="chart-bars">
+      <!-- JS preenche -->
+    </div>
+  </div>
 </div>
 
 <!-- Tabela -->
@@ -103,15 +106,52 @@ style="fill:none;stroke:var(--gold);stroke-width:3" />
 </main>
 </div>
 
-<script src="assets/js/auth.js"></script>
-<script src="assets/js/dashboard.js"></script>
+<script src="/assets/js/auth.js"></script>
+<script src="/assets/js/dashboard.js"></script>
 <script>
-window.AppAuth && window.AppAuth.requireAuth('assets/global/pages/login.html');
+
+
+(function () {
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const sidebar = document.getElementById('mobile-sidebar');
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  if (toggleBtn && sidebar) {
+    toggleBtn.setAttribute('aria-controls', 'mobile-sidebar');
+  }
+
+
+  function openMenu() {
+    if (sidebar) sidebar.classList.add('is-open');
+    if (overlay) overlay.classList.remove('hidden');
+  }
+
+  function closeMenu() {
+    if (sidebar) sidebar.classList.remove('is-open');
+    if (overlay) overlay.classList.add('hidden');
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener('click', openMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+
+  // Fecha ao clicar em qualquer link do menu
+  if (sidebar) {
+    const links = sidebar.querySelectorAll('a');
+    links.forEach(a => a.addEventListener('click', closeMenu));
+  }
+
+  // Botão logout (desktop)
   const btnLogout = document.getElementById('btn-logout');
   if (btnLogout && window.AppAuth) {
     btnLogout.addEventListener('click', () => window.AppAuth.logout());
   }
+
+  // Fecha ao voltar para desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+})();
 </script>
+
 </body>
 </html>
 

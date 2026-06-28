@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const passError = document.getElementById('passError');
 
   // Elementos de Loading/Animação
-  // Nota: No HTML o overlay é `bntlogin`.
+// Overlay de carregamento (no login.html atual existem: #loader e o próprio botão #submitBtn)
+  // Mantemos referências opcionais para não quebrar caso IDs não existam.
   const loaderIcon = document.getElementById('loader');
-  const loadingOverlay = document.getElementById('bntlogin');
-  const loadingText = document.getElementById('loadingText');
-  // Alguns layouts usam `loadingSubtext` e outros `loadingSubtextText`.
-  const loadingSubtext = document.getElementById('loadingSubtext');
-  const loadingSubtextAlt = document.getElementById('loadingSubtext') || loadingSubtext;
+  const loadingOverlay = document.getElementById('bntlogin'); // opcional (layout antigo)
+  const loadingText = document.getElementById('loadingText'); // opcional
+  const loadingSubtext = document.getElementById('loadingSubtext'); // opcional
+  const loadingSubtextAlt = document.getElementById('loadingSubtextAlt') || loadingSubtext;
 
 
   // Texto "ENTRAR" dentro do botão (pode ser null em caso de mudanças de HTML)
@@ -149,6 +149,7 @@ if (!passValue) {
 }
 
 
+
 // Se houver campos vazios, para aqui
 if (!isValid) return;
 
@@ -182,7 +183,7 @@ if (passwordInput) passwordInput.disabled = true;
 if(btnText) btnText.style.display = 'none';
 if(loaderIcon) loaderIcon.classList.remove('hidden');
 
-// Prepara o Overlay de tela cheia (só pode aparecer no fluxo de sucesso)
+// Prepara o Overlay de tela cheia (opcional; no layout atual ele não existe)
 if (loadingOverlay) {
   loadingOverlay.classList.remove('hidden');
   // Pequeno delay para permitir que o CSS transition funcione no opacity
@@ -190,6 +191,7 @@ if (loadingOverlay) {
     loadingOverlay.style.opacity = '1';
   }, 50);
 }
+
 
 
 // Sequência de textos de carregamento
@@ -203,7 +205,7 @@ let currentStep = 0;
 
 
 function runSequence() {
-if (currentStep < steps.length) {
+  if (currentStep < steps.length) {
 // Atualiza textos
 if (loadingText) loadingText.textContent = steps[currentStep].title;
 // Suporta variações de ID
@@ -227,8 +229,9 @@ window.location.href = "dashboard.html";
 }
 }
 
-// Inicia a sequência
+// Inicia a sequência. Mesmo se IDs opcionais não existirem, ao final redireciona.
 runSequence();
 }
+
 
 });

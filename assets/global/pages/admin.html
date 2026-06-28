@@ -3,479 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BarberSaaS - Dashboard Demo</title>
-<!-- Ícones -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<!-- Fonte -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
---deep-black: #0F0F10;
---charcoal: #1C1C1E;
---dark-gray: #2D2D30;
---premium-gold: #C8A96E;
---white: #FFFFFF;
---gray-text: #9CA3AF;
-}
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Inter', sans-serif;
-}
-
-body {
-background-color: var(--deep-black);
-color: var(--white);
-height: 100vh;
-display: flex;
-overflow: hidden;
-}
-
-/* Sidebar */
-.sidebar {
-width: 260px;
-background-color: var(--charcoal);
-border-right: 1px solid var(--dark-gray);
-display: flex;
-flex-direction: column;
-padding: 1.5rem;
-transition: all 0.3s;
-}
-
-.logo {
-display: flex;
-align-items: center;
-gap: 12px;
-margin-bottom: 2.5rem;
-}
-
-.logo-icon {
-width: 32px;
-height: 32px;
-background-color: var(--premium-gold);
-border-radius: 6px;
-display: flex;
-align-items: center;
-justify-content: center;
-color: var(--deep-black);
-font-weight: bold;
-}
-
-.logo-text {
-font-size: 1.25rem;
-font-weight: 700;
-letter-spacing: -0.5px;
-}
-
-.logo-text span {
-color: var(--premium-gold);
-}
-
-.nav-menu {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-flex: 1;
-}
-
-.nav-item {
-display: flex;
-align-items: center;
-gap: 12px;
-padding: 0.75rem 1rem;
-border-radius: 8px;
-color: var(--gray-text);
-text-decoration: none;
-transition: all 0.2s;
-cursor: pointer;
-border: none;
-background: transparent;
-width: 100%;
-font-size: 0.95rem;
-}
-
-.nav-item:hover {
-background-color: var(--dark-gray);
-color: var(--white);
-}
-
-.nav-item.active {
-background-color: rgba(200, 169, 110, 0.1);
-color: var(--premium-gold);
-border-left: 3px solid var(--premium-gold);
-}
-
-.nav-item svg {
-width: 20px;
-height: 20px;
-}
-
-.logout-btn {
-margin-top: auto;
-color: #ef4444;
-}
-
-.logout-btn:hover {
-background-color: rgba(239, 68, 68, 0.1);
-color: #ef4444;
-}
-
-/* Main Content */
-.main-content {
-flex: 1;
-overflow-y: auto;
-padding: 2rem;
-}
-
-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 2rem;
-}
-
-.header-title h2 {
-font-size: 1.5rem;
-font-weight: 600;
-}
-
-.header-title p {
-color: var(--gray-text);
-font-size: 0.9rem;
-margin-top: 4px;
-}
-
-.search-bar {
-background-color: var(--charcoal);
-border: 1px solid var(--dark-gray);
-border-radius: 8px;
-padding: 0.6rem 1rem;
-display: flex;
-align-items: center;
-gap: 10px;
-width: 300px;
-}
-
-.search-bar input {
-background: transparent;
-border: none;
-color: var(--white);
-outline: none;
-width: 100%;
-font-size: 0.9rem;
-}
-
-.search-bar input::placeholder {
-color: #52525b;
-}
-
-/* Cards Grid */
-.metrics-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 1.5rem;
-margin-bottom: 2rem;
-}
-
-.card {
-background-color: var(--charcoal);
-border: 1px solid var(--dark-gray);
-border-radius: 12px;
-padding: 1.5rem;
-position: relative;
-overflow: hidden;
-}
-
-.card-header {
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
-margin-bottom: 1rem;
-}
-
-.card-title {
-color: var(--gray-text);
-font-size: 0.85rem;
-font-weight: 500;
-text-transform: uppercase;
-letter-spacing: 0.5px;
-}
-
-.card-value {
-font-size: 1.8rem;
-font-weight: 700;
-color: var(--white);
-}
-
-.card-trend {
-font-size: 0.85rem;
-display: flex;
-align-items: center;
-gap: 4px;
-}
-
-.trend-up { color: #10b981; }
-.trend-down { color: #ef4444; }
-
-/* Botão de Avaliação Destacado */
-.btn-evaluate {
-background: linear-gradient(135deg, var(--premium-gold), #b08d55);
-color: var(--deep-black);
-border: none;
-padding: 1rem;
-border-radius: 12px;
-font-weight: 600;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-width: 100%;
-transition: transform 0.2s, box-shadow 0.2s;
-box-shadow: 0 4px 15px rgba(200, 169, 110, 0.2);
-}
-
-.btn-evaluate:hover {
-transform: translateY(-2px);
-box-shadow: 0 6px 20px rgba(200, 169, 110, 0.3);
-}
-
-/* Tabela */
-.table-container {
-background-color: var(--charcoal);
-border: 1px solid var(--dark-gray);
-border-radius: 12px;
-overflow: hidden;
-margin-top: 2rem;
-}
-
-.table-header {
-padding: 1.5rem;
-border-bottom: 1px solid var(--dark-gray);
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-table {
-width: 100%;
-border-collapse: collapse;
-}
-
-th {
-text-align: left;
-padding: 1rem 1.5rem;
-color: var(--gray-text);
-font-weight: 500;
-font-size: 0.85rem;
-border-bottom: 1px solid var(--dark-gray);
-}
-
-td {
-padding: 1rem 1.5rem;
-border-bottom: 1px solid var(--dark-gray);
-font-size: 0.9rem;
-}
-
-tr:last-child td {
-border-bottom: none;
-}
-
-.status-badge {
-padding: 4px 8px;
-border-radius: 4px;
-font-size: 0.75rem;
-font-weight: 600;
-}
-
-.status-positive { background-color: rgba(16, 185, 129, 0.1); color: #10b981; }
-.status-neutral { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-
-/* Utilitários */
-.stars { color: var(--premium-gold); }
-
-/* Responsividade básica */
-@media (max-width: 768px) {
-.sidebar { display: none; }
-.metrics-grid { grid-template-columns: 1fr; }
-}
-</style>
+<title>Admin | Barbearia Estilo & Classe</title>
+<link rel="stylesheet" href="/assets/global/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-<div class="logo">
-<div class="logo-icon">B</div>
-<div class="logo-text">Barber<span>SaaS</span></div>
+<div id="admin-view">
+
+<!-- Mobile top bar -->
+<div class="mobile-topbar">
+  <div class="mobile-topbar-left">
+    <button class="mobile-menu-toggle" aria-label="Abrir menu">
+      <i class="fas fa-bars" style="font-size:1.1rem;"></i>
+    </button>
+    <div>
+      <div class="mobile-title">Dashboard</div>
+    </div>
+  </div>
 </div>
 
-<nav class="nav-menu">
-<a class="nav-item active" href="dashboard.html" style="text-decoration:none;">
-<i data-lucide="layout-dashboard"></i> Dashboard
-</a>
-<a class="nav-item" href="dashboard.html" style="text-decoration:none;">
-<i data-lucide="star"></i> Avaliações
-</a>
-<a class="nav-item" href="clients.html" style="text-decoration:none;">
-<i data-lucide="users"></i> Clientes
-</a>
-<a class="nav-item" href="dashboard.html" style="text-decoration:none;">
-<i data-lucide="file-text"></i> Relatórios
-</a>
-<a class="nav-item" href="admin-settings.html" style="text-decoration:none;">
-<i data-lucide="settings"></i> Configurações
-</a>
+<!-- Mobile overlay -->
+<div id="mobile-menu-overlay" class="mobile-menu-overlay hidden"></div>
 
+<!-- Sidebar -->
+<nav class="sidebar" id="mobile-sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo"><i class="fas fa-chart-line"></i> E&C Admin</div>
+  </div>
+  <ul class="nav-menu">
+    <li class="nav-item active"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+    <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-star"></i> Avaliações</a></li>
+    <li class="nav-item"><a href="assets/global/pages/clients.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-users"></i> Clientes</a></li>
+    <li class="nav-item"><a href="assets/global/pages/dashboard.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-file-alt"></i> Relatórios</a></li>
+    <li class="nav-item"><a href="assets/global/pages/admin-settings.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:15px;"><i class="fas fa-cog"></i> Configurações</a></li>
+  </ul>
 </nav>
 
-<!-- Botão de Avaliação na Sidebar (Atalho Rápido) -->
-<button class="nav-item btn-evaluate-sidebar" style="margin-top: 10px; background: transparent; border: 1px solid var(--premium-gold); color: var(--premium-gold);" onclick="restartDemo()">
-<i data-lucide="refresh-cw"></i> Reiniciar Demo
-</button>
-
-
-<button class="nav-item logout-btn">
-<i data-lucide="log-out"></i> Sair
-</button>
-</aside>
-
-<!-- Main Content -->
 <main class="main-content">
-<header>
-<div class="header-title">
-<h2>Dashboard</h2>
-<p>Visão geral do desempenho da barbearia</p>
-</div>
-<div class="search-bar">
-<i data-lucide="search" style="color: var(--gray-text); width: 18px;"></i>
-<input type="text" placeholder="Pesquisar avaliações...">
-</div>
-</header>
+  <div class="admin-header">
+    <div>
+      <h2 class="text-gold">Visão Geral</h2>
+      <p style="color: #666;">Bem-vindo ao painel de controle.</p>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:flex-end;">
+      <button id="btn-logout" class="btn-primary" style="font-size:0.8rem;padding:10px 18px; background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; box-shadow:none;">Sair</button>
+    </div>
+  </div>
 
-<!-- Cards de Métricas -->
-<div class="metrics-grid">
-<div class="card">
-<div class="card-header">
-<span class="card-title">Média Geral</span>
-<i data-lucide="star" style="color: var(--premium-gold);"></i>
-</div>
-<div class="card-value">4.8</div>
-<div class="card-trend trend-up" style="margin-top: 8px;">
-<i data-lucide="trending-up" width="16"></i> +2.5% este mês
-</div>
-</div>
+  <!-- Métricas -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Média Geral</div>
+      <div class="metric-value">4.8</div>
+      <div style="font-size: 0.8rem; color: var(--gold);"><i class="fas fa-arrow-up"></i> Alta performance</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total Avaliações</div>
+      <div class="metric-value">1.245</div>
+      <div style="font-size: 0.8rem; color: #666;">Últimos 30 dias</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Satisfação</div>
+      <div class="metric-value">92%</div>
+      <div style="font-size: 0.8rem; color: var(--gold-light);">Clientes recomendam</div>
+    </div>
+  </div>
 
-<div class="card">
-<div class="card-header">
-<span class="card-title">Total Avaliações</span>
-<i data-lucide="message-square" style="color: var(--gray-text);"></i>
-</div>
-<div class="card-value">1,245</div>
-<div class="card-trend trend-up" style="margin-top: 8px;">
-<i data-lucide="trending-up" width="16"></i> +12% vs mês anterior
-</div>
-</div>
+  <!-- Gráficos (demo visual) -->
+  <div class="charts-container" style="grid-template-columns: 1fr;">
+    <div class="chart-card">
+      <h3 class="chart-title">Distribuição de Notas</h3>
+      <div id="chart-bars">
+        <!-- JS preenche -->
+      </div>
+    </div>
+  </div>
 
-<div class="card">
-<div class="card-header">
-<span class="card-title">Satisfação</span>
-<i data-lucide="smile" style="color: #10b981;"></i>
-</div>
-<div class="card-value">92%</div>
-<div class="card-trend" style="margin-top: 8px; color: var(--gray-text);">
-Clientes satisfeitos
-</div>
-</div>
-
-<!-- Card de Ação: Botão de Avaliação -->
-<div class="card" style="border-color: var(--premium-gold);">
-<div class="card-header">
-<span class="card-title" style="color: var(--premium-gold);">Ação Rápida</span>
-</div>
-<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-<button class="btn-evaluate" onclick="restartDemo()">
-<i data-lucide="star"></i>
-Nova Avaliação (Demo)
-</button>
-<p style="font-size: 0.75rem; color: var(--gray-text); text-align: center;">
-Clique para simular o fluxo do cliente
-</p>
-</div>
-</div>
-</div>
-
-<!-- Tabela de Avaliações Recentes -->
-<div class="table-container">
-<div class="table-header">
-<h3 style="font-size: 1.1rem;">Avaliações Recentes</h3>
-<button style="background: transparent; border: 1px solid var(--dark-gray); color: var(--white); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem;">Ver todas</button>
-</div>
-<table>
-<thead>
-<tr>
-<th>Cliente</th>
-<th>Serviço</th>
-<th>Nota</th>
-<th>Comentário</th>
-<th>Data</th>
-<th>Ação</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="font-weight: 500;">Carlos Silva</td>
-<td>Corte + Barba</td>
-<td class="stars">★★★★★</td>
-<td style="color: var(--gray-text);">Serviço impecável, ambiente top.</td>
-<td>24/06/2026</td>
-<td><i data-lucide="more-vertical" style="cursor: pointer; color: var(--gray-text);"></i></td>
-</tr>
-<tr>
-<td style="font-weight: 500;">André Souza</td>
-<td>Corte Degradê</td>
-<td class="stars">★★★★☆</td>
-<td style="color: var(--gray-text);">Bom, mas demorou um pouco.</td>
-<td>23/06/2026</td>
-<td><i data-lucide="more-vertical" style="cursor: pointer; color: var(--gray-text);"></i></td>
-</tr>
-<tr>
-<td style="font-weight: 500;">João Pedro</td>
-<td>Barba</td>
-<td class="stars">★★★★★</td>
-<td style="color: var(--gray-text);">Melhor barbeiro da região.</td>
-<td>22/06/2026</td>
-<td><i data-lucide="more-vertical" style="cursor: pointer; color: var(--gray-text);"></i></td>
-</tr>
-</tbody>
-</table>
-</div>
+  <h3 class="chart-title">Avaliações Recentes</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Categoria</th>
+          <th>Comentário</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>24/06/2026</td>
+          <td><span style="color:white; font-size:0.8rem">Corte, Ambiente</span></td>
+          <td>Serviço impecável, ambiente top.</td>
+          <td class="rating-badge">★★★★★</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </main>
 
-<script src=></script>
+<script src="/assets/js/auth.js"></script>
+<script src="/assets/js/dashboard.js"></script>
 <script>
-// Inicializa ícones
-lucide.createIcons();
+  window.AppAuth && window.AppAuth.requireAuth('login.html');
 
-// Bloqueio de acesso (demo sem backend)
-window.AppAuth && window.AppAuth.requireAuth('login.html');
+  // Open/close off-canvas (mobile)
+  (function () {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const toggleBtn = document.querySelector('.mobile-menu-toggle');
 
-// Função principal solicitada: Redireciona para o demo novamente
-function restartDemo() {
+    function openMenu() {
+      if (sidebar) sidebar.classList.add('is-open');
+      if (overlay) overlay.classList.remove('hidden');
+    }
 
-  // Efeito visual de clique
-  const btn = event.currentTarget;
-  btn.style.transform = "scale(0.95)";
-  setTimeout(() => {
-    btn.style.transform = "";
-    // Recarrega a página para simular o retorno ao início do fluxo/demo
-    window.location.reload();
-  }, 150);
-}
+    function closeMenu() {
+      if (sidebar) sidebar.classList.remove('is-open');
+      if (overlay) overlay.classList.add('hidden');
+    }
+
+    if (toggleBtn && sidebar) {
+      toggleBtn.setAttribute('aria-controls', 'mobile-sidebar');
+      toggleBtn.addEventListener('click', openMenu);
+    }
+
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    if (sidebar) {
+      const links = sidebar.querySelectorAll('a');
+      links.forEach(a => a.addEventListener('click', closeMenu));
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout && window.AppAuth) {
+      btnLogout.addEventListener('click', () => window.AppAuth.logout());
+    }
+  })();
 </script>
 
 </body>
 </html>
+
