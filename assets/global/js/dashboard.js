@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnNew = document.getElementById('btn-new-review');
   if (btnNew) {
     btnNew.addEventListener('click', () => {
-      window.location.href = '/index.html';
+      window.location.href = 'index.html';
     });
   }
 
@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnGoClients = document.getElementById('btn-go-clients');
   if (btnGoClients) {
     btnGoClients.addEventListener('click', () => {
-      window.location.href = 'clients.html';
+      window.location.href = '../pages/clients.html';
     });
   }
 
   const btnGoSettings = document.getElementById('btn-go-settings');
   if (btnGoSettings) {
     btnGoSettings.addEventListener('click', () => {
-      window.location.href = 'admin-settings.html';
+      window.location.href = '../pages/admin-settings.html';
     });
   }
 });
