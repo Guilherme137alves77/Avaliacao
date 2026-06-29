@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnNew = document.getElementById('btn-new-review');
   if (btnNew) {
     btnNew.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      window.location.href = '/index.html';
     });
   }
 
