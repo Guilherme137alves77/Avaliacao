@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barbearia Estilo & Classe | Avaliação</title>
-<link rel="stylesheet" href="assets/global/css/style.css">
-<!-- Fontes -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-<!-- Ícones -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia Estilo &amp; Classe | Avaliação</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/client.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<div id="client-view">
-<div class="header-brand">
-<i class="fas fa-cut logo-icon"></i>
-<h1 class="brand-name">Estilo & Classe</h1>
-<p class="brand-slogan">Desde 2026 • Barbearia Premium</p>
-</div>
+  <main id="client-view">
+    <header class="header-brand">
+      <i class="fas fa-cut logo-icon" aria-hidden="true"></i>
+      <h1 class="brand-name">Estilo &amp; Classe</h1>
+      <p class="brand-slogan">Desde 2026 • Barbearia Premium</p>
+    </header>
 
-<div class="evaluation-card">
-<div class="card-title">
-<h2>AVALIE NOSSO ATENDIMENTO</h2>
-<p>Sua opinião nos ajuda a manter a excelência.</p>
-</div>
+    <article class="evaluation-card">
+      <header class="card-title">
+        <h2>AVALIE NOSSO ATENDIMENTO</h2>
+        <p>Sua opinião nos ajuda a manter a excelência.</p>
+      </header>
 
-<!-- Estrelas -->
-<div class="star-container">
-<input type="radio" name="star" id="star5" class="star-input" value="5">
-<label for="star5" class="star-label"><i class="fas fa-star"></i></label>
+      <section aria-label="Seleção de nota">
+        <div class="star-container" role="radiogroup" aria-label="Nota de avaliação">
+          <input type="radio" name="star" id="star5" class="star-input" value="5">
+          <label for="star5" class="star-label" aria-label="5 estrelas — Excelente"><i class="fas fa-star" aria-hidden="true"></i></label>
 
-<input type="radio" name="star" id="star4" class="star-input" value="4">
-<label for="star4" class="star-label"><i class="fas fa-star"></i></label>
+          <input type="radio" name="star" id="star4" class="star-input" value="4">
+          <label for="star4" class="star-label" aria-label="4 estrelas — Bom"><i class="fas fa-star" aria-hidden="true"></i></label>
 
-<input type="radio" name="star" id="star3" class="star-input" value="3">
-<label for="star3" class="star-label"><i class="fas fa-star"></i></label>
+          <input type="radio" name="star" id="star3" class="star-input" value="3">
+          <label for="star3" class="star-label" aria-label="3 estrelas — Regular"><i class="fas fa-star" aria-hidden="true"></i></label>
 
-<input type="radio" name="star" id="star2" class="star-input" value="2">
-<label for="star2" class="star-label"><i class="fas fa-star"></i></label>
+          <input type="radio" name="star" id="star2" class="star-input" value="2">
+          <label for="star2" class="star-label" aria-label="2 estrelas — Ruim"><i class="fas fa-star" aria-hidden="true"></i></label>
 
-<input type="radio" name="star" id="star1" class="star-input" value="1">
-<label for="star1" class="star-label"><i class="fas fa-star"></i></label>
-</div>
+          <input type="radio" name="star" id="star1" class="star-input" value="1">
+          <label for="star1" class="star-label" aria-label="1 estrela — Péssimo"><i class="fas fa-star" aria-hidden="true"></i></label>
+        </div>
 
-<div style="text-align: center; margin-bottom: 20px;">
-<span id="rating-text" class="text-gold" style="font-family: var(--font-title); letter-spacing: 2px;">SELECIONE UMA NOTA</span>
-</div>
+        <p style="text-align:center;margin-bottom:20px;">
+          <span id="rating-text" class="text-gold" style="font-family:var(--font-title);letter-spacing:2px;">SELECIONE UMA NOTA</span>
+        </p>
+      </section>
 
-<!-- Categorias -->
-<div class="category-grid" id="categories">
-<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-cut"></i><span>Corte</span></div>
-<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-user-tie"></i><span>Barba</span></div>
-<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-couch"></i><span>Ambiente</span></div>
-<div class="cat-item" onclick="toggleCategory(this)"><i class="fas fa-clock"></i><span>Pontualidade</span></div>
-</div>
+      <section aria-label="Categorias de avaliação">
+        <div class="category-grid" id="categories">
+          <div class="cat-item" aria-pressed="false"><i class="fas fa-cut" aria-hidden="true"></i><span>Corte</span></div>
+          <div class="cat-item" aria-pressed="false"><i class="fas fa-user-tie" aria-hidden="true"></i><span>Barba</span></div>
+          <div class="cat-item" aria-pressed="false"><i class="fas fa-couch" aria-hidden="true"></i><span>Ambiente</span></div>
+          <div class="cat-item" aria-pressed="false"><i class="fas fa-clock" aria-hidden="true"></i><span>Pontualidade</span></div>
+        </div>
+      </section>
 
-<textarea id="comment" rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
+      <label for="comment" class="sr-only">Comentário sobre a experiência</label>
+      <textarea id="comment" rows="3" placeholder="Conte-nos como foi sua experiência..."></textarea>
 
-<div style="text-align: center;">
-<button id="submitBtn" class="btn-primary">Enviar Avaliação</button>
-</div>
-</div>
-</div>
+      <div class="evaluation-actions">
+        <button type="button" id="submitBtn" class="btn-primary">Enviar Avaliação</button>
+      </div>
+    </article>
+  </main>
 
-<!-- Loading Overlay -->
-<div id="loading-overlay" class="hidden">
-<div class="loader-ring"></div>
-<div id="loading-msg" class="loading-text">Enviando avaliação...</div>
-</div>
+  <div id="loading-overlay" class="hidden" role="alert" aria-live="polite" aria-busy="true">
+    <div class="loader-ring" aria-hidden="true"></div>
+    <div id="loading-msg" class="loading-text">Enviando avaliação...</div>
+  </div>
 
-<script src="assets/js/auth.js"></script>
-<script>
-  // Protege a página do cliente: só libera após login
-
-</script>
-<script src="/assets/global/js/script.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/evaluation.js"></script>
 </body>
 </html>

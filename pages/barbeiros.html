@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbeiros | Barbearia Estilo &amp; Classe</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="admin-view">
+    <header class="mobile-topbar">
+      <div class="mobile-topbar-left">
+        <button type="button" class="mobile-menu-toggle" aria-label="Abrir menu de navegação">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-title">Barbeiros</div>
+      </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay hidden" aria-hidden="true"></div>
+    <nav class="sidebar" id="admin-sidebar" aria-label="Menu principal"></nav>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div>
+          <h2 class="text-gold">Barbeiros</h2>
+          <p class="text-muted">Equipe, especialidades e desempenho individual.</p>
+        </div>
+        <div class="admin-header-actions">
+          <button type="button" id="btn-logout" class="btn-primary btn-danger">Sair</button>
+        </div>
+      </header>
+
+      <section class="metrics-grid" aria-label="Métricas da equipe">
+        <article class="metric-card">
+          <div class="metric-label">Barbeiros Ativos</div>
+          <div class="metric-value" id="metric-barbeiros-total">0</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Total de Atendimentos</div>
+          <div class="metric-value" id="metric-barbeiros-atendimentos">0</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Melhor Média</div>
+          <div class="metric-value" id="metric-barbeiros-media">0.0</div>
+        </article>
+      </section>
+
+      <section aria-label="Equipe de barbeiros">
+        <h3 class="chart-title">Nossa Equipe</h3>
+        <div id="barbeiros-grid" class="barbers-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/barbeiros.js"></script>
+</body>
+</html>

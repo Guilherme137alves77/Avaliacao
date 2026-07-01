@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatórios | Barbearia Estilo &amp; Classe</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="admin-view">
+    <header class="mobile-topbar">
+      <div class="mobile-topbar-left">
+        <button type="button" class="mobile-menu-toggle" aria-label="Abrir menu de navegação">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-title">Relatórios</div>
+      </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay hidden" aria-hidden="true"></div>
+    <nav class="sidebar" id="admin-sidebar" aria-label="Menu principal"></nav>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div>
+          <h2 class="text-gold">Relatórios</h2>
+          <p class="text-muted">Indicadores, evolução e rankings da barbearia.</p>
+        </div>
+        <div class="admin-header-actions">
+          <button type="button" id="btn-logout" class="btn-primary btn-danger">Sair</button>
+        </div>
+      </header>
+
+      <div class="export-actions">
+        <button type="button" id="btn-export-pdf" class="btn-primary btn-secondary"><i class="fas fa-file-pdf" aria-hidden="true"></i> Exportar PDF</button>
+        <button type="button" id="btn-export-excel" class="btn-primary btn-secondary"><i class="fas fa-file-excel" aria-hidden="true"></i> Exportar Excel</button>
+      </div>
+
+      <section class="metrics-grid" aria-label="Indicadores">
+        <article class="metric-card">
+          <div class="metric-label">Total Avaliações</div>
+          <div class="metric-value" id="report-total">0</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Média Mensal</div>
+          <div class="metric-value" id="report-monthly">0.0</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Média Semanal</div>
+          <div class="metric-value" id="report-weekly">0.0</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Satisfação Geral</div>
+          <div class="metric-value" id="report-satisfaction">0%</div>
+        </article>
+      </section>
+
+      <section class="charts-container">
+        <article class="chart-card">
+          <h3 class="chart-title">Evolução das Avaliações</h3>
+          <div id="report-distribution"></div>
+        </article>
+        <article class="chart-card">
+          <h3 class="chart-title">Ranking dos Barbeiros</h3>
+          <ul id="barber-ranking" class="rank-list"></ul>
+        </article>
+      </section>
+
+      <section class="charts-container">
+        <article class="chart-card">
+          <h3 class="chart-title">Serviços Mais Avaliados</h3>
+          <ul id="service-ranking" class="rank-list"></ul>
+        </article>
+        <article class="chart-card">
+          <h3 class="chart-title">Histórico Mensal (Demo)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Período</th>
+                  <th scope="col">Avaliações</th>
+                  <th scope="col">Média</th>
+                  <th scope="col">Satisfação</th>
+                  <th scope="col">Evolução</th>
+                </tr>
+              </thead>
+              <tbody id="relatorios-table-body"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/relatorios.js"></script>
+</body>
+</html>

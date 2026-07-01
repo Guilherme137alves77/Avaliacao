@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil | Barbearia Estilo &amp; Classe</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="admin-view">
+    <header class="mobile-topbar">
+      <div class="mobile-topbar-left">
+        <button type="button" class="mobile-menu-toggle" aria-label="Abrir menu de navegação">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-title">Meu Perfil</div>
+      </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay hidden" aria-hidden="true"></div>
+    <nav class="sidebar" id="admin-sidebar" aria-label="Menu principal"></nav>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div>
+          <h2 class="text-gold">Perfil do Administrador</h2>
+          <p class="text-muted">Suas informações de acesso ao painel.</p>
+        </div>
+        <div class="admin-header-actions">
+          <button type="button" id="btn-logout" class="btn-primary btn-danger">Sair</button>
+        </div>
+      </header>
+
+      <section class="charts-container charts-container--single">
+        <article class="chart-card">
+          <div class="profile-header">
+            <div class="profile-avatar" aria-hidden="true"><i class="fas fa-user"></i></div>
+            <div class="profile-info">
+              <h3 id="profile-name">Administrador</h3>
+              <p id="profile-role">Gerente — Estilo &amp; Classe</p>
+              <p id="profile-email">admin@barberpro.com</p>
+            </div>
+          </div>
+
+          <div class="metrics-grid" style="margin-bottom:24px;">
+            <article class="metric-card">
+              <div class="metric-label">Avaliações Gerenciadas</div>
+              <div class="metric-value" id="profile-reviews-managed">0</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Último Acesso</div>
+              <div class="metric-value" id="profile-last-access" style="font-size:1.5rem;">—</div>
+            </article>
+          </div>
+
+          <h3 class="chart-title">Editar Perfil (Demo)</h3>
+          <form id="form-perfil">
+            <div class="form-field">
+              <label for="perfil-nome">Nome</label>
+              <input type="text" id="perfil-nome" value="Administrador">
+            </div>
+            <div class="form-field">
+              <label for="perfil-email">Email</label>
+              <input type="email" id="perfil-email" value="admin@barberpro.com">
+            </div>
+            <button type="submit" class="btn-primary btn-secondary">Salvar Alterações</button>
+          </form>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/perfil-admin.js"></script>
+</body>
+</html>

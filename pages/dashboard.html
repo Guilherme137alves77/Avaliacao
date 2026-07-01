@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Barbearia Estilo &amp; Classe</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="admin-view">
+    <header class="mobile-topbar">
+      <div class="mobile-topbar-left">
+        <button type="button" class="mobile-menu-toggle" aria-label="Abrir menu de navegação">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-title">Dashboard</div>
+      </div>
+    </header>
+
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay hidden" aria-hidden="true"></div>
+    <nav class="sidebar" id="admin-sidebar" aria-label="Menu principal"></nav>
+
+    <main class="main-content">
+      <header class="admin-header">
+        <div>
+          <h2 class="text-gold">Visão Geral</h2>
+          <p class="text-muted">Acompanhe as avaliações dos clientes da barbearia.</p>
+        </div>
+        <div class="admin-header-actions">
+          <button type="button" id="btn-new-review" class="btn-primary btn-secondary">Nova Avaliação (Demo)</button>
+          <button type="button" id="btn-go-clientes" class="btn-primary btn-secondary">Clientes</button>
+          <button type="button" id="btn-go-settings" class="btn-primary btn-secondary">Configurações</button>
+          <button type="button" id="btn-logout" class="btn-primary btn-danger">Sair</button>
+        </div>
+      </header>
+
+      <section class="metrics-grid" aria-label="Indicadores principais">
+        <article class="metric-card">
+          <div class="metric-label">Total de Avaliações</div>
+          <div class="metric-value" id="metric-total">0</div>
+          <div style="font-size:0.8rem;color:#666;">Últimos 30 dias</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Média Geral</div>
+          <div class="metric-value" id="metric-avg">0.0</div>
+          <div style="font-size:0.8rem;color:var(--gold);"><i class="fas fa-arrow-up" aria-hidden="true"></i> Alta performance</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Satisfação</div>
+          <div class="metric-value" id="metric-satisfaction">0%</div>
+          <div style="font-size:0.8rem;color:var(--gold-light);">Clientes recomendam</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Clientes Avaliados</div>
+          <div class="metric-value" id="metric-clients">0</div>
+          <div style="font-size:0.8rem;color:#666;">Clientes únicos</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">Barbeiros Cadastrados</div>
+          <div class="metric-value" id="metric-barbers">0</div>
+          <div style="font-size:0.8rem;color:var(--gold-light);">Equipe ativa</div>
+        </article>
+      </section>
+
+      <section class="charts-container" aria-label="Gráficos e serviços">
+        <article class="chart-card">
+          <h3 class="chart-title">Distribuição de Notas (Satisfação)</h3>
+          <div id="chart-bars"></div>
+        </article>
+        <article class="chart-card">
+          <h3 class="chart-title">Desempenho por Serviço</h3>
+          <p style="color:var(--gold-light);font-size:0.9rem;margin-bottom:10px;"><i class="fas fa-trophy" aria-hidden="true"></i> Mais bem avaliado:</p>
+          <p id="service-best" style="color:#ccc;font-size:0.9rem;margin-bottom:16px;">—</p>
+          <p style="color:var(--text-gray);font-size:0.9rem;margin-bottom:10px;"><i class="fas fa-arrow-down" aria-hidden="true"></i> Menor avaliação:</p>
+          <p id="service-worst" style="color:#ccc;font-size:0.9rem;">—</p>
+        </article>
+      </section>
+
+      <section aria-label="Avaliações recentes">
+        <h3 class="chart-title">Avaliações Recentes</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Barbeiro</th>
+                <th scope="col">Serviço</th>
+                <th scope="col">Comentário</th>
+                <th scope="col">Nota</th>
+              </tr>
+            </thead>
+            <tbody id="reviews-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
