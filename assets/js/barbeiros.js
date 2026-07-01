@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     grid.insertAdjacentHTML('beforeend', `
       <article class="barber-card">
-        <img class="barber-photo" src="${b.photo}" alt="Foto de ${window.AppUtils.escapeHtml(b.name)}" loading="lazy">
+      
         <div class="barber-body">
           <h3 class="barber-name">${window.AppUtils.escapeHtml(b.name)}</h3>
           <p class="barber-specialty">${window.AppUtils.escapeHtml(b.specialty)}</p>
